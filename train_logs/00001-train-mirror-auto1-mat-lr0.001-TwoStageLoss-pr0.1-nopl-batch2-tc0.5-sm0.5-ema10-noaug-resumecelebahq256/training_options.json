@@ -1,0 +1,82 @@
+{
+  "num_gpus": 1,
+  "image_snapshot_ticks": 50,
+  "network_snapshot_ticks": 50,
+  "metrics": [
+    "fid36k5_full"
+  ],
+  "random_seed": 0,
+  "training_set_kwargs": {
+    "class_name": "datasets.dataset_256.ImageFolderMaskDataset",
+    "path": "mydataset/train",
+    "use_labels": false,
+    "max_size": 3,
+    "xflip": true,
+    "resolution": 256
+  },
+  "val_set_kwargs": {
+    "class_name": "datasets.dataset_256.ImageFolderMaskDataset",
+    "path": "mydataset/valid",
+    "use_labels": false,
+    "max_size": 1,
+    "xflip": false,
+    "resolution": 256
+  },
+  "data_loader_kwargs": {
+    "pin_memory": true,
+    "num_workers": 3,
+    "prefetch_factor": 2
+  },
+  "G_kwargs": {
+    "class_name": "networks.mat.Generator",
+    "z_dim": 512,
+    "w_dim": 512,
+    "mapping_kwargs": {
+      "num_layers": 2
+    },
+    "synthesis_kwargs": {
+      "channel_base": 16384,
+      "channel_max": 512
+    }
+  },
+  "D_kwargs": {
+    "class_name": "networks.mat.Discriminator",
+    "channel_base": 16384,
+    "channel_max": 512,
+    "mbstd_group_size": 4
+  },
+  "G_opt_kwargs": {
+    "class_name": "torch.optim.Adam",
+    "lr": 0.001,
+    "betas": [
+      0,
+      0.99
+    ],
+    "eps": 1e-08
+  },
+  "D_opt_kwargs": {
+    "class_name": "torch.optim.Adam",
+    "lr": 0.001,
+    "betas": [
+      0,
+      0.99
+    ],
+    "eps": 1e-08
+  },
+  "loss_kwargs": {
+    "class_name": "losses.loss.TwoStageLoss",
+    "r1_gamma": 0.8192,
+    "pcp_ratio": 0.1,
+    "pl_weight": 0,
+    "truncation_psi": 0.5,
+    "style_mixing_prob": 0.5
+  },
+  "total_kimg": 25000,
+  "batch_size": 2,
+  "batch_gpu": 2,
+  "ema_kimg": 10,
+  "ema_rampup": null,
+  "resume_pkl": "https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/transfer-learning-source-nets/celebahq-res256-mirror-paper256-kimg100000-ada-target0.5.pkl",
+  "ada_kimg": 100,
+  "run_dir": "train_logs\\00001-train-mirror-auto1-mat-lr0.001-TwoStageLoss-pr0.1-nopl-batch2-tc0.5-sm0.5-ema10-noaug-resumecelebahq256"
+}

@@ -1,0 +1,27 @@
+Loading training set...
+Traceback (most recent call last):
+  File "train.py", line 648, in <module>
+    main() # pylint: disable=no-value-for-parameter
+  File "D:\SDK\Python\venv\mat-3.7\lib\site-packages\click\core.py", line 1157, in __call__
+    return self.main(*args, **kwargs)
+  File "D:\SDK\Python\venv\mat-3.7\lib\site-packages\click\core.py", line 1078, in main
+    rv = self.invoke(ctx)
+  File "D:\SDK\Python\venv\mat-3.7\lib\site-packages\click\core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "D:\SDK\Python\venv\mat-3.7\lib\site-packages\click\core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+  File "D:\SDK\Python\venv\mat-3.7\lib\site-packages\click\decorators.py", line 33, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "train.py", line 641, in main
+    subprocess_fn(rank=0, args=args, temp_dir=temp_dir)
+  File "train.py", line 471, in subprocess_fn
+    training_loop.training_loop(rank=rank, **args)
+  File "D:\MAT\training\training_loop.py", line 137, in training_loop
+    training_set = dnnlib.util.construct_class_by_name(**training_set_kwargs) # subclass of training.dataset.Dataset
+  File "D:\MAT\dnnlib\util.py", line 289, in construct_class_by_name
+    return call_func_by_name(*args, func_name=class_name, **kwargs)
+  File "D:\MAT\dnnlib\util.py", line 284, in call_func_by_name
+    return func_obj(*args, **kwargs)
+  File "D:\MAT\datasets\dataset_512.py", line 188, in __init__
+    raise IOError('Image files do not match the specified resolution')
+OSError: Image files do not match the specified resolution
